@@ -6,11 +6,13 @@ A React Native mobile app for recording meetings with **local AI** processing - 
 
 - 🎤 **Audio Recording** - Record meetings with pause/resume
 - 🗣️ **Local Speech-to-Text** - Whisper.cpp running on-device
+- 🚀 **Batch Processing** - Handle 4-5 hour meetings efficiently (36 min vs 3+ hours!)
 - 🤖 **Local AI Summarization** - Phi-3 mini model for summaries
 - 📝 **Edit Transcripts** - Review and edit transcriptions
 - 💾 **SQLite Storage** - All data stored locally
 - 🖨️ **Bluetooth Printing** - Print summaries directly to thermal printers
 - 📊 **Meeting Statistics** - Track your meeting time and history
+- ⏱️ **Progress Tracking** - Real-time progress with ETA for long meetings
 
 ## Tech Stack 🛠️
 
