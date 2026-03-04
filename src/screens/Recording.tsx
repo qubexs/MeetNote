@@ -120,13 +120,23 @@ const Recording: React.FC<RecordingProps> = ({ navigation }) => {
     setShowSaveDialog(false);
 
     try {
-      // Step 1: Transcribe audio
+      // Step 1: Transcribe audio (AUTO-DETECTS if batch needed)
       setProcessingStatus('Transcribing audio...');
       if (!STTService.isReady()) {
         await STTService.initialize();
       }
 
-      const transcriptionResult = await STTService.transcribe(audioPath);
+      // Use transcribeAuto - it handles both short and long recordings
+      const transcriptionResult = await STTService.transcribeAuto(audioPath, {
+        onProgress: (progress) => {
+          // Update status with batch progress
+          setProcessingStatus(
+            `Transcribing: Chunk ${progress.currentChunk}/${progress.totalChunks} ` +
+            `(${Math.round(progress.overallProgress)}%) - ` +
+            `ETA: ${Math.floor(progress.estimatedTimeRemaining / 60)}m ${progress.estimatedTimeRemaining % 60}s`
+          );
+        },
+      });
       const transcript = transcriptionResult.text;
 
       // Step 2: Generate summary
